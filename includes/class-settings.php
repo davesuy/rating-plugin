@@ -1,4 +1,3 @@
-
 <?php
 
 class Rating_Settings extends Rating_App {
