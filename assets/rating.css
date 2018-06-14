@@ -1,0 +1,186 @@
+ #contentRating {
+   /* position: fixed;
+    bottom:0;
+    right: 10px;
+    overflow: hidden;
+    text-align: center*/;
+}
+
+#toggleRating {
+    background:#333;
+    color: white;
+    border:none;
+    box-shadow: none;
+    text-transform: uppercase;
+    font-size: small;
+    position: relative;
+}
+
+#toggleRating .arrow {
+    display: inline-block;
+    vertical-align: middle;
+    width: 0px;
+    height: 0px;
+    border: 4px solid transparent;
+    position: absolute;
+    border-bottom-color: rgba(225,225,225, 0.5);
+    right: 5px;
+    top: 15px;
+}
+
+#toggleRating.active .arrow {
+    border-bottom-color: transparent;
+    border-top-color: rgba(225,225,225, 0.5);
+    top: 20px;
+}
+
+#entryRating {
+    height:0;
+    overflow: hidden;
+}
+
+.rc-rating-content {
+    box-sizing: border-box;
+    background:#333;
+    color:white;
+    padding:0 20px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.rc-rating-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rc-rating-content ul li {
+    display: inline-block;
+    padding:10px;
+    position: relative;
+    color: white;
+}
+
+.rc-rating-content ul li label {
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius:3px;
+    color: white;
+}
+
+.rc-rating-content ul li input {
+     position: absolute;
+     visibility: hidden;
+}
+
+.rc-rating-content ul li input:checked ~ label {
+    background-color: #fb8b33;
+}
+
+#entryRating.active {
+    height: auto;
+    float: left;
+}
+
+#submitRating {
+
+    font-size: 12px;
+    text-transform: uppercase;
+    border: none;
+    box-shadow: none;
+    padding: 4px 10px;
+}
+
+#ratingErrors {
+    color:#fb8b33;
+    font-style: italic;
+}
+
+
+.comments-rating {
+    border: none;
+    padding: 0;
+    margin-left: 0;
+}
+
+.comments-rating label {
+    display: inline-block;
+}
+
+.rating-container {
+    /* remove inline-block whitespace */
+    font-size: 0;
+    /* flip the order so we can use the + and ~ combinators */
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    float: left;
+    margin-right: 10px;
+}
+
+.rating-container * {
+    font-size: 1.4rem;
+}
+
+.rating-container > input {
+    display: none;
+}
+
+.rating-container > input + label {
+    /* only enough room for the star */
+   font-family: 'dashicons';
+    display: inline-block;
+    overflow: hidden;
+    text-indent: 9999px;
+    width: 1.3em;
+    white-space: nowrap;
+    cursor: pointer;
+    margin: 0;
+    font-size: 25px;
+
+}
+
+.rating-container > input + label:before {
+    display: inline-block;
+    text-indent: -9999px;
+    content: "\f154";
+    color: #888;
+}
+
+.rating-container > input:checked ~ label:before,
+.rating-container > input + label:hover ~ label:before,
+.rating-container > input + label:hover:before {
+    content: "\f155";
+    color: #e52;
+    text-shadow: 0 0 1px #333;
+}
+
+.rating-container > .star-cb-clear + label {
+    text-indent: -9999px;
+    width: .5em;
+    margin-left: -.5em;
+}
+
+.rating-container > .star-cb-clear + label:before {
+    width: .5em;
+}
+
+.rating-container:hover > input + label:before {
+    content: "\f154";
+    color: #888;
+    text-shadow: none;
+}
+
+.rating-container:hover > input + label:hover ~ label:before,
+.rating-container:hover > input + label:hover:before {
+    content: "\f155";
+    color: #e52;
+    text-shadow: 0 0 1px #333;
+}
+
+.lp-rating-display-container {
+    margin-top: 10px;
+}
+
+.lp-rating-display-container .average-rating .dashicons {
+    color: #FFDF00;
+}
