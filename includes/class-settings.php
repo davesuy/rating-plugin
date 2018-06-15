@@ -55,7 +55,7 @@ class Rating_Settings extends Rating_App {
 
         // SQL query to get all the content which has the meta key 'lp_rating'. Group the content by the ID and get an average rating on each
         $sql = "SELECT * FROM ( SELECT p.post_title 'title', p.guid 'link', post_id, AVG(meta_value) AS rating, count(meta_value) 'count' FROM {$wpdb->prefix}postmeta pm";
-        $sql .= " LEFT JOIN wp_posts p ON p.ID = pm.post_id";
+        $sql .= " LEFT JOIN {$wpdb->prefix}posts p ON p.ID = pm.post_id";
         $sql .= " where meta_key = 'lp_rating' group by post_id ) as ratingTable ORDER BY rating DESC";
         
         $result = $wpdb->get_results( $sql, 'ARRAY_A' );

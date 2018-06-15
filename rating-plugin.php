@@ -14,6 +14,7 @@ require_once 'includes/class-settings.php';
 require_once 'includes/class-checking.php';
 require_once 'includes/class-handler.php';
 require_once 'includes/class-display.php';
+require_once 'includes/class-shortcodes.php';
 
 
 class Rating_App {
@@ -28,12 +29,13 @@ class Rating_App {
 
 		$this->controllers['Rating_Settings'] = new Rating_Settings;
 		$this->controllers['Rating_Checking'] = new Rating_Checking;
-		$this->controllers['Rating_Checking'] = new Rating_Handler;
+		$this->controllers['Rating_Handler'] = new Rating_Handler;
+		$this->controllers['Rating_Shortcodes'] = new Rating_Shortcodes;
 
 		add_action( 'wp_enqueue_scripts', array($this, 'enqueue_styles_and_scripts' ));
 		add_action( 'admin_enqueue_scripts', array($this,'admin_include_myuploadscript'));
 		add_filter( 'the_excerpt', array($this, 'lp_the_excerpt_more_link'), 40 );
-		add_filter( 'get_the_excerpt', array($this, 'lp_the_excerpt_more_link'), 40 );
+		add_filter( 'get_the_excerpt', array($this, 'lp_the_excerpt_more_link'), 40 , 2);
 	}
 
 	public static function generate_instance() {
@@ -84,19 +86,21 @@ class Rating_App {
 	    ));
 	}
 
-	public function lp_the_excerpt_more_link( $excerpt ){
-		global $post;		
+	public function lp_the_excerpt_more_link( $excerpt, $post ){
+				
 
 		$rating_display = new Rating_Display;
 		$rating_output = $rating_display->display_rating();
-	   
+		
+	   	
 	    $excerpt = $excerpt;
 
-	    if(has_excerpt() ) {
+	    //if(has_excerpt() ) {
+	    	$excerpt .= '<div class="clear clearfix"></div>';
     		$excerpt .= '<div class="lp-rating-display-container">';
     				$excerpt .=	$rating_output;
     		$excerpt .= '</div>';
-	      }
+	     // }
 
 	    return $excerpt;
 	}
