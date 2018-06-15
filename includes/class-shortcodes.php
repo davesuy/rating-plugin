@@ -1,6 +1,6 @@
 <?php
 
-
+require_once 'class-display.php';
 
 
 class Rating_Shortcodes extends Rating_App {
@@ -26,7 +26,7 @@ class Rating_Shortcodes extends Rating_App {
 		$content .= '</div>';
 
 		return $content;
-
+	//return '<pre>'.print_r($this->rating_display, true).'</pre>';
 	} 
 
 

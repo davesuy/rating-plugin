@@ -2,9 +2,11 @@
 
 class Rating_Display {
 
-	public function __construct() {
+	public $rat;
 
+	public function __construct() {
 		
+		$this->rat = "debug";
 
 
 	}
@@ -12,7 +14,7 @@ class Rating_Display {
 
 
 
-	function display_rating() {
+	public function display_rating() {
 
 		global $wpdb;
 
@@ -91,14 +93,16 @@ class Rating_Display {
 		$stars   = '';
 		$post_id = get_the_ID();
 
-		   $sql = "SELECT * FROM ( SELECT p.post_title 'title', p.guid 'link', post_id, AVG(meta_value) AS rating, count(meta_value) 'count' FROM {$wpdb->prefix}postmeta pm";
-	    $sql .= " LEFT JOIN wp_posts p ON p.ID = pm.post_id";
-	    $sql .= " where meta_key = 'lp_rating' AND post_id = $post_id) as ratingTable";
+
+
+     $sql = "SELECT * FROM ( SELECT p.post_title 'title', p.guid 'link', post_id, AVG(meta_value) AS rating, count(meta_value) 'count' FROM {$wpdb->prefix}postmeta pm";
+        $sql .= " LEFT JOIN {$wpdb->prefix}posts p ON p.ID = pm.post_id";
+        $sql .= " where meta_key = 'lp_rating' AND post_id = $post_id ) as ratingTable ORDER BY rating DESC";
 
 
 	    $result = $wpdb->get_results( $sql, 'ARRAY_A' );
 		
-	    //echo '<pre>'.print_r( $result, true).'</pre>';
+	   // echo '<pre>'.print_r( $result, true).'</pre>';
 	    $average = $result[0]['rating'];
 
 		for ( $i = 1; $i <= $average + 1; $i++ ) {
