@@ -18,11 +18,16 @@ class Rating_Shortcodes extends Rating_App {
 
 	}
 
-	public function rating_shortcode_display() {
+	public function rating_shortcode_display($atts) {
+
+		$atts = shortcode_atts(
+		array(
+			'post_id' => ''			
+		), $atts, 'p_ratings' );
 
 		$content = '<div class="clear clearfix"></div>';
     	$content .= '<div class="lp-rating-display-container">';
-		$content .= $this->rating_display->display_rating();
+		$content .= $this->rating_display->display_rating($atts['post_id']);
 		$content .= '</div>';
 
 		return $content;

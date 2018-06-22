@@ -87,10 +87,11 @@ class Rating_App {
 	}
 
 	public function lp_the_excerpt_more_link( $excerpt, $post ){
-				
+		
+		global $post;
 
 		$rating_display = new Rating_Display;
-		$rating_output = $rating_display->display_rating();
+		$rating_output = $rating_display->display_rating($post->ID);
 		
 	   	
 	    $excerpt = $excerpt;
